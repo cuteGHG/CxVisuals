@@ -17,6 +17,14 @@ val lib: SourceSet = sourceSets.create("lib") {
 
 configurations.maybeCreate("mappings")
 
+sourceSets.named("main") {
+    java.setSrcDirs(emptyList<String>())
+}
+
+sourceSets.maybeCreate("client") {
+    java.srcDir("src/main/java")
+}
+
 repositories {
     mavenCentral()
     exclusiveContent {
@@ -38,11 +46,11 @@ dependencies {
 }
 
 loom {
-    clientOnlyMinecraftJar()
+    splitEnvironmentSourceSets()
 
     mods {
         register("cxvisuals") {
-            sourceSet(sourceSets.main.get())
+            sourceSet(sourceSets.getByName("client"))
             sourceSet(lib)
         }
     }
