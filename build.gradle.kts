@@ -35,6 +35,8 @@ dependencies {
 }
 
 loom {
+    clientOnlyMinecraft()
+
     mods {
         register("cxvisuals") {
             sourceSet(sourceSets.main.get())
