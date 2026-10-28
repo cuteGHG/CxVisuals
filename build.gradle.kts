@@ -15,6 +15,8 @@ val lib: SourceSet = sourceSets.create("lib") {
     java.srcDir("src/lib/java")
 }
 
+configurations.maybeCreate("mappings")
+
 repositories {
     mavenCentral()
     exclusiveContent {
@@ -25,7 +27,7 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${prop("minecraft_version")}")
-    mappings("net.fabricmc:yarn:${prop("yarn_mappings")}:v2")
+    add("mappings", "net.fabricmc:yarn:${prop("yarn_mappings")}:v2")
     implementation("net.fabricmc:fabric-loader:${prop("loader_version")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${prop("fabric_api_version")}")
 
