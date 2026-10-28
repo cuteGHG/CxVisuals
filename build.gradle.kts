@@ -35,7 +35,7 @@ dependencies {
 }
 
 loom {
-    clientOnlyMinecraft()
+    clientOnlyMinecraftJar()
 
     mods {
         register("cxvisuals") {
