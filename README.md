@@ -1,6 +1,6 @@
 # CxVisuals
 
-Client-side Fabric mod for Minecraft 26.2: a set of visual modules behind one settings window.
+Client-side Fabric mod for Minecraft 26.3: a set of visual modules behind one settings window.
 
 It only changes what you see. Your player's position and rotation are never touched and nothing extra is sent to the server.
 

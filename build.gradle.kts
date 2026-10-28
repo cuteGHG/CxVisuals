@@ -30,7 +30,7 @@ dependencies {
 
     "libCompileOnly"("com.google.code.gson:gson:2.13.1")
     "libCompileOnly"("org.joml:joml:1.10.8")
-    compileOnly("maven.modrinth:sodium:mc26.2-0.9.2-fabric")
+    compileOnly("maven.modrinth:sodium:mc26.3-0.9.2-fabric")
     implementation(lib.output)
 }
 
