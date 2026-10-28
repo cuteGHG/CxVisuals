@@ -1,5 +1,5 @@
 plugins {
-    id("net.fabricmc.fabric-loom") version "1.17-SNAPSHOT"
+    id("net.fabricmc.fabric-loom") version "1.19-SNAPSHOT"
 }
 
 fun prop(name: String) = providers.gradleProperty(name).get()
@@ -15,6 +15,16 @@ val lib: SourceSet = sourceSets.create("lib") {
     java.srcDir("src/lib/java")
 }
 
+configurations.maybeCreate("mappings")
+
+sourceSets.named("main") {
+    java.setSrcDirs(emptyList<String>())
+}
+
+sourceSets.maybeCreate("client") {
+    java.srcDir("src/main/java")
+}
+
 repositories {
     mavenCentral()
     exclusiveContent {
@@ -25,19 +35,22 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${prop("minecraft_version")}")
+    add("mappings", "net.fabricmc:yarn:${prop("yarn_mappings")}:v2")
     implementation("net.fabricmc:fabric-loader:${prop("loader_version")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${prop("fabric_api_version")}")
 
     "libCompileOnly"("com.google.code.gson:gson:2.13.1")
     "libCompileOnly"("org.joml:joml:1.10.8")
-    compileOnly("maven.modrinth:sodium:mc26.2-0.9.2-fabric")
+    compileOnly("maven.modrinth:sodium:mc26.3-0.9.2-fabric")
     implementation(lib.output)
 }
 
 loom {
+    splitEnvironmentSourceSets()
+
     mods {
         register("cxvisuals") {
-            sourceSet(sourceSets.main.get())
+            sourceSet(sourceSets.getByName("client"))
             sourceSet(lib)
         }
     }
