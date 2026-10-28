@@ -1,5 +1,5 @@
 plugins {
-    id("net.fabricmc.fabric-loom") version "1.17-SNAPSHOT"
+    id("net.fabricmc.fabric-loom") version "1.19-SNAPSHOT"
 }
 
 fun prop(name: String) = providers.gradleProperty(name).get()
@@ -25,7 +25,6 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${prop("minecraft_version")}")
-    add("mappings", loom.officialMojangMappings())
     implementation("net.fabricmc:fabric-loader:${prop("loader_version")}")
     implementation("net.fabricmc.fabric-api:fabric-api:${prop("fabric_api_version")}")
 
